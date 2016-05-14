@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    command: --storageEngine wiredTiger
+    volumes:
+      # This would exist on MacOSX Host - permissions errors
+      #- /Users/mitch/git/docker-microservice-demo/mongo/data:/data/db
+      # Map this to boot2docker host FileSystem to keep mongo data between
+      # container restarts
+      - /data/db:/data/db
+  #
+  # Service Discovery - Registrator
+  #
+  registrator:
+    container_name: registrator
+    command: -ip 127.0.0.1 -ttl 30 -ttl-refresh 15 consul://172.17.0.2:8500
+    image: gliderlabs/registrator:latest
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock"
+    extra_hosts:
+      - "vinzclortho:127.0.0.1"
