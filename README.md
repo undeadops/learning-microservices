@@ -3,20 +3,20 @@ Playing with Ideas of Multiple Python Flask Micro-Services(I'm open to using Go 
 
 ## Idea's built into this project
 
-    Purpose of this is to demonstrate service discovery/registration, and multiple "micro" services.
+Purpose of this is to demonstrate service discovery/registration, and multiple "micro" services.
 
-    Code is in no way production quality
+Code is in no way production quality
 
-    I'm not a full time developer, just an Ops person with lots of interest in scaleable infrastructure/apps
-    and infrastructure as code.  I will be using this project and sub projects to test ideas/thoughts on how
-    service discovery works, monitoring of infrastructure and applications, as well as something to demo to
-    people to help explain ideas behind those concepts.  I want to keep the code small as possible to remain
-    easy to explain. Also, in some of the services, I intend on adding bottlenecks. Because this would not
-    be used in full scale production environments, I need ways of faking scale with those bottlenecks by
-    writing single threaded blocking services in areas I believe would have bottlenecks in a full scale
-    environment.  
+I'm not a full time developer, just an Ops person with lots of interest in scaleable infrastructure/apps
+and infrastructure as code.  I will be using this project and sub projects to test ideas/thoughts on how
+service discovery works, monitoring of infrastructure and applications, as well as something to demo to
+people to help explain ideas behind those concepts.  I want to keep the code small as possible to remain
+easy to explain. Also, in some of the services, I intend on adding bottlenecks. Because this would not
+be used in full scale production environments, I need ways of faking scale with those bottlenecks by
+writing single threaded blocking services in areas I believe would have bottlenecks in a full scale
+environment.  
 
-    Pull Requests welcome!
+Pull Requests welcome!
 
 
 ### Service Names and their purpose
