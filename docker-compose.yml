@@ -1,7 +1,20 @@
 version: '2'
 
 services:
+  consul:
+    container_name: consul
+    image: progrium/consul:latest
+    command: -server -bootstrap -ui-dir /ui
+    ports:
+      - "8400:8400"
+      - "8500:8500"
+      - "8600:53/udp"
+      - "0.0.0.0:53:53/udp"
+    networks:
+      - bridge
+
   mongo:
+    container_name: mongo
     image: mongo
     ports:
       - "27017:27017"
@@ -11,15 +24,29 @@ services:
       #- /Users/mitch/git/docker-microservice-demo/mongo/data:/data/db
       # Map this to boot2docker host FileSystem to keep mongo data between
       # container restarts
-      - /data/db:/data/db
+      - ./mongodata:/data/db
+    networks:
+      - bridge
+
   #
   # Service Discovery - Registrator
   #
   registrator:
     container_name: registrator
-    command: -ip 127.0.0.1 -ttl 30 -ttl-refresh 15 consul://172.17.0.2:8500
+    command: -ip 127.0.0.1 -ttl 30 -ttl-refresh 15 consul://localhost:8500
     image: gliderlabs/registrator:latest
+    network_mode: "host"
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock"
-    extra_hosts:
-      - "vinzclortho:127.0.0.1"
+
+  giles:
+    container_name: giles
+    image: giles:latest
+    ports:
+      - "5000:5000"
+    networks:
+      - bridge
+
+
+networks:
+  bridge:
