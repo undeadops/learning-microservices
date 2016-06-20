@@ -44,6 +44,8 @@ services:
     image: giles:latest
     ports:
       - "5000:5000"
+    volumes:
+      - /Users/mitch/code/giles:/code
     networks:
       - bridge
 
